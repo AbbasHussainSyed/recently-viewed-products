@@ -1,0 +1,60 @@
+### Environment Variables
+@baseUrl = http://localhost:3000/api/v1
+@userId = 51XoN7rX0dVJLN700P9GFYHNq652
+@authToken =  eyJhbGciOiJSUzI1NiIsImtpZCI6ImU2YWMzNTcyNzY3ZGUyNjE0ZmM1MTA4NjMzMDg3YTQ5MjMzMDNkM2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcmVjZW50bHktdmlld2VkLXByb2R1Y3RzLWZhOGM0IiwiYXVkIjoicmVjZW50bHktdmlld2VkLXByb2R1Y3RzLWZhOGM0IiwiYXV0aF90aW1lIjoxNzMwNzc3OTE4LCJ1c2VyX2lkIjoiNTFYb043clgwZFZKTE43MDBQOUdGWUhOcTY1MiIsInN1YiI6IjUxWG9ON3JYMGRWSkxONzAwUDlHRllITnE2NTIiLCJpYXQiOjE3MzA3Nzc5MTgsImV4cCI6MTczMDc4MTUxOCwiZW1haWwiOiJ0ZXN0QGV4YW1wbGUuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbInRlc3RAZXhhbXBsZS5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.Uts9afcFjvLIayEbqw8rMsLMmbpo-O4ELXRfMJSeNkpcCoFGBC5YG2EM9vTlPhbrxYcgl5d4vL-CtM3o7j8wJfNtT1QK8WPSaMaMqn_F_SmlPuT9cCTTBN71uv5O3L5bJt-_YmA8RX7Wsfhz8tpB1e1PuSC1F1xbPo8lp0F-HkQrdNGVeZq_3-VsXA1oudG3PdUnJyjLZVxKnAZYTZtMwBrLCT8F0D1c9vMlD1DpMCjoZtKa5g_0fZelDemZi2sqtYGK3h0yqVI6bqw0TzoAmy8isLCt7JqBDnjXO0ugXoyyyMCRgiusSRns7dSd0UXQp-E5NE2t2eONgf3ElbixBw
+### Health Check
+GET http://localhost:3000/health
+
+### Get Recently Viewed Products
+GET {{baseUrl}}/users/{{userId}}/recentlyViewed
+Authorization: Bearer {{authToken}}
+
+### Add Product to Recently Viewed
+POST {{baseUrl}}/users/{{userId}}/recentlyViewed
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "productId": "3"
+}
+
+### 1. Add First Product
+POST {{baseUrl}}/users/{{userId}}/recentlyViewed
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "productId": "product1",
+  "name": "iPhone 15",
+  "price": 999.99
+}
+
+### 2. Add Second Product
+POST {{baseUrl}}/users/{{userId}}/recentlyViewed
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "productId": "product10",
+  "name": "macintosh",
+  "price": 299.99
+}
+
+### 4. Test Cache by Getting Products Again (should be faster)
+GET {{baseUrl}}/users/{{userId}}/recentlyViewed
+Authorization: Bearer {{authToken}}
+
+### 5. Test 10 Items Limit (Add products 3-11)
+POST {{baseUrl}}/users/{{userId}}/recentlyViewed
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "productId": "product3",
+  "name": "iPad Pro",
+  "price": 799.99
+}
+
+### 6. Verify First Item Was Removed
+GET {{baseUrl}}/users/{{userId}}/recentlyViewed
+Authorization: Bearer {{authToken}}
