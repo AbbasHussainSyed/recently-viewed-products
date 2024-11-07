@@ -40,7 +40,7 @@ app.use(express.json());
 app.use('/api/v1', productRoutes(productController));
 
 // Serve static files from the "public" directory (where your frontend build is located)
-app.use(express.static(path.join(__dirname, '..', 'public'))); // Adjust the path as needed
+app.use(express.static(path.join(__dirname, '..', 'public', 'dist'))); // Adjust the path as needed
 
 // Health check route
 app.get('/health', (req, res) => {
@@ -49,7 +49,7 @@ app.get('/health', (req, res) => {
 
 // Catch-all route to serve the frontend
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html')); // Adjust the path as needed
+    res.sendFile(path.join(__dirname, '..', 'public','dist', 'index.html')); // Adjust the path as needed
 });
 
 // Error handling middleware
