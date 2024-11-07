@@ -2,7 +2,7 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger.config');
 const express = require('express');
-const path = require('path'); // Import the path module
+const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
@@ -36,6 +36,29 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
+// Content Security Policy (CSP) setup using helmet
+app.use(
+    helmet.contentSecurityPolicy({
+        directives: {
+            defaultSrc: ["'self'"],
+            connectSrc: [
+                "'self'",
+                "https://*.firebaseio.com",
+                "https://*.googleapis.com",
+                "https://identitytoolkit.googleapis.com"
+            ],
+            scriptSrc: [
+                "'self'",
+                "'unsafe-inline'",
+                "https://www.gstatic.com",
+                "https://www.googleapis.com"
+            ],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            imgSrc: ["'self'", "data:"]
+        }
+    })
+);
+
 // API Routes
 app.use('/api/v1', productRoutes(productController));
 
@@ -49,7 +72,7 @@ app.get('/health', (req, res) => {
 
 // Catch-all route to serve the frontend
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public','dist', 'index.html')); // Adjust the path as needed
+    res.sendFile(path.join(__dirname, '..', 'public', 'dist', 'index.html')); // Adjust the path as needed
 });
 
 // Error handling middleware
