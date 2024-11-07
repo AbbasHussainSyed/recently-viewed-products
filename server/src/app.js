@@ -2,6 +2,7 @@
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger.config');
 const express = require('express');
+const path = require('path'); // Import the path module
 const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
@@ -35,12 +36,20 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-// Routes
+// API Routes
 app.use('/api/v1', productRoutes(productController));
+
+// Serve static files from the "public" directory (where your frontend build is located)
+app.use(express.static(path.join(__dirname, '..', 'public'))); // Adjust the path as needed
 
 // Health check route
 app.get('/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date() });
+});
+
+// Catch-all route to serve the frontend
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html')); // Adjust the path as needed
 });
 
 // Error handling middleware
