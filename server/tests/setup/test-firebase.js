@@ -1,4 +1,4 @@
-const { initializeFirebase } = require('./config/firebase.config');
+const { initializeFirebase } = require('../../src/config/firebase.config');
 
 async function testFirebase() {
     try {

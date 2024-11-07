@@ -1,0 +1,27 @@
+{
+  "name": "recently-viewed-products",
+  "version": "1.0.0",
+  "description": "Create a containerized Node.js app that integrates Firebase and Redis for recently viewed products",
+  "scripts": {
+    "start": "npm run start --prefix server",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-all": "npm install && npm install --prefix client && npm install --prefix server",
+    "test": "npm test --prefix server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbbasHussainSyed/recently-viewed-products.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbbasHussainSyed/recently-viewed-products/issues"
+  },
+  "homepage": "https://github.com/AbbasHussainSyed/recently-viewed-products#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "recently-viewed-products-server",
+  "version": "1.0.0",
+  "description": "Backend for recently viewed products with Firebase and Redis",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:firebase": "node tests/setup/test-firebase.js",
+    "seed": "node tests/setup/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "firebase": "^11.0.1",
+    "firebase-admin": "^11.11.0",
+    "firebase-functions": "^4.5.0",
+    "helmet": "^8.0.0",
+    "ioredis": "^5.4.1",
+    "nodemailer": "^6.9.16",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.0",
+    "eslint": "^9.14.0",
+    "firebase-functions-test": "^3.1.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
+  }
+}
