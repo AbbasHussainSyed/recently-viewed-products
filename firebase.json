@@ -1,8 +1,8 @@
 {
   "functions": [
     {
-      "source": "functions",
-      "codebase": "default",
+      "source": "server",
+      "codebase": "server-functions",
       "ignore": [
         "node_modules",
         ".git",
@@ -13,7 +13,7 @@
     }
   ],
   "hosting": {
-    "public": "dist",
+    "public": "client/build",
     "ignore": [
       "firebase.json",
       "**/.*",

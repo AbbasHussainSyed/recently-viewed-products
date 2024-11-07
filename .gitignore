@@ -37,7 +37,7 @@ coverage/
 
 # Production
 build/
-dist/
+
 
 # Cache
 .cache/
