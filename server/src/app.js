@@ -54,7 +54,8 @@ app.use(
                 "https://www.googleapis.com"
             ],
             styleSrc: ["'self'", "'unsafe-inline'"],
-            imgSrc: ["'self'", "data:"]
+            imgSrc: ["'self'", "data:",
+                "https://via.placeholder.com"]
         }
     })
 );
